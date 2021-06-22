@@ -1,0 +1,33 @@
+---
+namespace: adv-tech
+state: present
+
+stargate_namespace: adventurer
+
+mongodb_replicaset: rs0
+mongodb_connection: mongodb://root:it_is_a_secret@mongodb-0.mongodb-headless.data,mongodb-1.mongodb-headless.data,mongodb-2.mongodb-headless.data
+
+domain: adv-tech.36node.com
+ingress_name: "{{ namespace }}"
+finance_path: /finance/v0
+kanban_path: /kanban/v0
+
+tower_version: latest
+tower_image: "registry.cn-beijing.aliyuncs.com/adventurer/tower:{{ tower_version }}"
+tower_login_url: https://adventurer.account-uat.stargate.36node.com/login?appId=600b8fce6a6c690011096e51
+tower_auth_endpoint: "https://api.stargate.36node.com/auth/uat"
+tower_kanban_endpoint: "https://kanban.{{ domain }}"
+tower_node_env: development
+
+hall_version: latest
+hall_image: "registry.cn-beijing.aliyuncs.com/adventurer/hall:{{ hall_version }}"
+
+finance_version: latest
+finance_image: "registry.cn-beijing.aliyuncs.com/adventurer/finance:{{ finance_version }}"
+finance_port: "80"
+finance_postgresql_host: postgresql.data
+
+kanban_version: latest
+kanban_image: "registry.cn-beijing.aliyuncs.com/adventurer/kanban:{{ kanban_version }}"
+kanban_port: "80"
+kanban_mongo_connection: "{{ mongodb_connection }}/kanban?authSource=admin&replicaSet={{ mongodb_replicaset }}"

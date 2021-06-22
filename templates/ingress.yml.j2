@@ -1,0 +1,45 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: "{{ ingress_name }}"
+  namespace: "{{ namespace }}"
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: "{{ cert_issuer }}"
+    # traefik.ingress.kubernetes.io/redirect-entry-point: https
+spec:
+  rules:
+    - host: tower.{{ domain }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: tower
+              servicePort: 80
+    - host: hall.{{ domain }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: hall
+              servicePort: 80
+    - host: api.{{ domain }}
+      http:
+        paths:
+          - path: "{{ finance_path }}"
+            backend:
+              serviceName: finance
+              servicePort: 80
+    - host: api.{{ domain }}
+      http:
+        paths:
+          - path: "{{ kanban_path }}"
+            backend:
+              serviceName: kanban
+              servicePort: 80
+  tls:
+    - hosts:
+        - "{{ domain }}"
+        - "*.{{ domain }}"
+      secretName: "{{ domain }}"

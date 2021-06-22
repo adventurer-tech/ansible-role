@@ -1,0 +1,66 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tower
+  namespace: "{{namespace}}"
+  labels:
+    app: tower
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: tower
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tower
+  namespace: "{{namespace}}"
+  labels:
+    app: tower
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: tower
+  template:
+    metadata:
+      labels:
+        app: tower
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: tower
+          image: "{{ tower_image }}"
+          env:
+            - name: LOGIN_URL
+              value: "{{ tower_login_url }}"
+            - name: AUTH_ENDPOINT
+              value: "{{ tower_auth_endpoint }}"
+            - name: KANBAN_ENDPOINT
+              value: "{{ tower_kanban_endpoint }}"
+            - name: NODE_ENV
+              value: "{{ tower_node_env }}"
+            - name: NAMESPACE
+              value: "{{ stargate_namespace }}"
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+            requests:
+              cpu: "10m"
+              memory: "32Mi"
