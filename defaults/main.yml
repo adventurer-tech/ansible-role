@@ -4,8 +4,7 @@ state: present
 
 stargate_namespace: adventurer
 
-mongodb_replicaset: rs0
-mongodb_connection: mongodb://root:it_is_a_secret@mongodb-0.mongodb-headless.data,mongodb-1.mongodb-headless.data,mongodb-2.mongodb-headless.data
+mongodb_connection: mongodb://root:it_is_a_secret@mongodb
 
 domain: adv-tech.36node.com
 ingress_name: "{{ namespace }}"
@@ -30,4 +29,4 @@ finance_postgresql_host: postgresql.data
 kanban_version: latest
 kanban_image: "registry.cn-beijing.aliyuncs.com/adventurer/kanban:{{ kanban_version }}"
 kanban_port: "80"
-kanban_mongo_connection: "{{ mongodb_connection }}/kanban?authSource=admin&replicaSet={{ mongodb_replicaset }}"
+kanban_mongo_connection: "{{ mongodb_connection }}/kanban?authSource=admin"
