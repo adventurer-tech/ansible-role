@@ -2,6 +2,10 @@
 
 adventurer-tech 的 ansible role，用于部署
 
+### 其他
+
+kanban 的 url 只接受/v0，而 traefik 无法像 nginx 定义正则匹配，因此把 api 的 ingress 放到 pod 的配置文件中
+
 ## Requirements
 
 Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.

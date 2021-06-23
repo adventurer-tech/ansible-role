@@ -31,13 +31,6 @@ spec:
             backend:
               serviceName: finance
               servicePort: 80
-    - host: api.{{ domain }}
-      http:
-        paths:
-          - path: "{{ kanban_path }}"
-            backend:
-              serviceName: kanban
-              servicePort: 80
   tls:
     - hosts:
         - "{{ domain }}"
