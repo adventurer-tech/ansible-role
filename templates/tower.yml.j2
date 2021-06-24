@@ -44,6 +44,8 @@ spec:
         - name: tower
           image: "{{ tower_image }}"
           env:
+            - name: DEPLOY_TIME
+              value: "{{ tower_time }}"
             - name: LOGIN_URL
               value: "{{ tower_login_url }}"
             - name: AUTH_ENDPOINT

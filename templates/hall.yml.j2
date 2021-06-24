@@ -43,6 +43,9 @@ spec:
       containers:
         - name: hall
           image: "{{ hall_image }}"
+          env:
+            - name: DEPLOY_TIME
+              value: "{{ hall_time }}"
           ports:
             - name: http
               containerPort: 80

@@ -44,6 +44,8 @@ spec:
           image: "{{ kanban_image }}"
           imagePullPolicy: Always
           env:
+            - name: DEPLOY_TIME
+              value: "{{ kanban_time }}"
             - name: PORT
               value: "{{ kanban_port }}"
             - name: MONGODB_CONNECTION

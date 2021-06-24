@@ -44,6 +44,8 @@ spec:
           image: "{{ finance_image }}"
           imagePullPolicy: Always
           env:
+            - name: DEPLOY_TIME
+              value: "{{ finance_time }}"
             - name: PORT
               value: "{{ finance_port }}"
             - name: BASE
