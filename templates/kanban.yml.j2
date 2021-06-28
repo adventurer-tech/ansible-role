@@ -5,7 +5,6 @@ metadata:
   name: kanban
   labels:
     app: kanban
-  namespace: "{{namespace}}"
 spec:
   type: ClusterIP
   ports:
@@ -21,7 +20,6 @@ metadata:
   name: kanban
   labels:
     app: kanban
-  namespace: "{{namespace}}"
 spec:
   selector:
     matchLabels:
@@ -60,23 +58,3 @@ spec:
             requests:
               cpu: "10m"
               memory: "32Mi"
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: api-kanban
-  namespace: "{{ namespace }}"
-  annotations:
-    kubernetes.io/ingress.class: traefik
-    cert-manager.io/cluster-issuer: "{{ cert_issuer }}"
-    traefik.ingress.kubernetes.io/rewrite-target: /v0
-    # traefik.ingress.kubernetes.io/redirect-entry-point: https
-spec:
-  rules:
-    - host: api.{{ domain }}
-      http:
-        paths:
-          - path: /kanban/v0
-            backend:
-              serviceName: kanban
-              servicePort: 80
