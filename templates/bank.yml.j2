@@ -1,0 +1,56 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bank
+  labels:
+    app: bank
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: bank
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bank
+  labels:
+    app: bank
+spec:
+  replicas: 1
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: bank
+  template:
+    metadata:
+      labels:
+        app: bank
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: bank
+          image: "{{ bank_image }}"
+          env:
+            - name: DEPLOY_TIME
+              value: "{{ bank_time }}"
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+            requests:
+              cpu: "10m"
+              memory: "32Mi"

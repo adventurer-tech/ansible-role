@@ -23,6 +23,13 @@ spec:
             backend:
               serviceName: hall
               servicePort: 80
+    - host: bank.{{ domain }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: bank
+              servicePort: 80
     - host: kanban.{{ domain }}
       http:
         paths:

@@ -26,6 +26,9 @@ tower_node_env: development
 hall_version: latest
 hall_image: "registry.cn-beijing.aliyuncs.com/adventurer/hall:{{ hall_version }}"
 
+bank_version: latest
+bank_image: "registry.cn-beijing.aliyuncs.com/adventurer/bank:{{ bank_version }}"
+
 finance_version: latest
 finance_image: "registry.cn-beijing.aliyuncs.com/adventurer/finance:{{ finance_version }}"
 finance_port: "80"

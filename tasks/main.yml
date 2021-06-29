@@ -13,6 +13,7 @@
     template: "{{ item }}"
   with_items:
     - hall.yml.j2
+    - bank.yml.j2
     - finance.yml.j2
     - kanban.yml.j2
     - tower.yml.j2
