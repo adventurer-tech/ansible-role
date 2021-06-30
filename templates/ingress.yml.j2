@@ -44,6 +44,13 @@ spec:
             backend:
               serviceName: finance
               servicePort: 80
+    - host: club.{{ domain }}
+      http:
+        paths:
+          - path: /v0
+            backend:
+              serviceName: club
+              servicePort: 80
   tls:
     - hosts:
         - "{{ domain }}"

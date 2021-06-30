@@ -1,0 +1,60 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: club
+  labels:
+    app: club
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: club
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: club
+  labels:
+    app: club
+spec:
+  selector:
+    matchLabels:
+      app: club
+  replicas: 1
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: club
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: club
+          image: "{{ club_image }}"
+          imagePullPolicy: Always
+          env:
+            - name: DEPLOY_TIME
+              value: "{{ club_time }}"
+            - name: PORT
+              value: "{{ club_port }}"
+            - name: MONGODB_CONNECTION
+              value: "{{ club_mongo_connection }}"
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+            requests:
+              cpu: "10m"
+              memory: "32Mi"

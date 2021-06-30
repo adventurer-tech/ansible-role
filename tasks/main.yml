@@ -16,6 +16,7 @@
     - bank.yml.j2
     - finance.yml.j2
     - kanban.yml.j2
+    - club.yml.j2
     - tower.yml.j2
     - ingress.yml.j2
   tags:

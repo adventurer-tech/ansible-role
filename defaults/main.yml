@@ -15,6 +15,7 @@ finance_time: 20210624110000
 bank_time: 20210624110000
 hall_time: 20210624110000
 kanban_time: 20210624110000
+club_time: 20210624110000
 tower_time: 20210624110000
 
 tower_version: latest
@@ -39,3 +40,8 @@ kanban_version: latest
 kanban_image: "registry.cn-beijing.aliyuncs.com/adventurer/kanban:{{ kanban_version }}"
 kanban_port: "80"
 kanban_mongo_connection: "{{ mongodb_connection }}/kanban?authSource=admin"
+
+club_version: latest
+club_image: "registry.cn-beijing.aliyuncs.com/adventurer/club:{{ club_version }}"
+club_port: "80"
+club_mongo_connection: "{{ mongodb_connection }}/club?authSource=admin"
