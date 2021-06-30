@@ -12,6 +12,7 @@ finance_path: /v0
 kanban_path: /v0
 
 finance_time: 20210624110000
+bank_time: 20210624110000
 hall_time: 20210624110000
 kanban_time: 20210624110000
 tower_time: 20210624110000
