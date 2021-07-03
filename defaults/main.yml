@@ -22,7 +22,7 @@ tower_version: latest
 tower_image: "registry.cn-beijing.aliyuncs.com/adventurer/tower:{{ tower_version }}"
 tower_login_url: https://adventurer.account-uat.stargate.36node.com/login?appId=600b8fce6a6c690011096e51
 tower_auth_endpoint: "https://api.stargate.36node.com/auth/uat"
-tower_kanban_endpoint: "https://kanban.{{ domain }}"
+tower_kanban_endpoint: "https://kanban.{{ domain }}/v0"
 tower_node_env: development
 
 hall_version: latest
