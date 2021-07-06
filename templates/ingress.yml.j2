@@ -51,6 +51,13 @@ spec:
             backend:
               serviceName: club
               servicePort: 80
+    - host: github.{{ domain }}
+      http:
+        paths:
+          - path: /v0
+            backend:
+              serviceName: github
+              servicePort: 80
   tls:
     - hosts:
         - "{{ domain }}"

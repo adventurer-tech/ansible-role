@@ -1,0 +1,68 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: github
+  labels:
+    app: github
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: github
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: github
+  labels:
+    app: github
+spec:
+  selector:
+    matchLabels:
+      app: github
+  replicas: 1
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: github
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: github
+          image: "{{ github_image }}"
+          imagePullPolicy: Always
+          env:
+            - name: DEPLOY_TIME
+              value: "{{ github_time }}"
+            - name: PORT
+              value: "{{ github_port }}"
+            - name: BASE
+              value: "/v0"
+            - name: DEFAULT_DRIVER_TOKEN
+              value: "{{ github_driver_token }}"
+            - name: DEFAULT_DRIVER_NAME
+              value: "{{ github_driver_name }}"
+            - name: GITHUB_HOOK_PAYLOAD_URL
+              value: "{{ github_hook_url }}"
+            - name: MONGODB_CONNECTION
+              value: "{{ github_mongo_connection }}"
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+            requests:
+              cpu: "10m"
+              memory: "32Mi"

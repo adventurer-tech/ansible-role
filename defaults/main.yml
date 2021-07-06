@@ -10,6 +10,7 @@ domain: adv-tech.36node.com
 ingress_name: "{{ namespace }}"
 finance_path: /v0
 kanban_path: /v0
+github_path: /v0
 
 finance_time: 20210624110000
 bank_time: 20210624110000
@@ -17,6 +18,7 @@ hall_time: 20210624110000
 kanban_time: 20210624110000
 club_time: 20210624110000
 tower_time: 20210624110000
+github_time: 20210624110000
 
 tower_version: latest
 tower_image: "registry.cn-beijing.aliyuncs.com/adventurer/tower:{{ tower_version }}"
@@ -51,3 +53,11 @@ club_port: "80"
 club_mongo_connection: "{{ mongodb_connection }}/club?authSource=admin"
 club_vector_enabled: true
 club_vector_topic:
+
+github_version: latest
+github_image: "registry.cn-beijing.aliyuncs.com/adventurer/github:{{ github_version }}"
+github_port: "80"
+github_mongo_connection: "{{ mongodb_connection }}/github?authSource=admin"
+github_driver_token: "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"
+github_driver_name: 36node
+github_hook_url: "https://api.adventurer.tech/core/v0/hook-events"
