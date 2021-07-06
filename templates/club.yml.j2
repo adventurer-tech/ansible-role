@@ -38,7 +38,7 @@ spec:
         app: club
         name: club
         vector.dev/enable: "{{ club_vector_enabled }}"
-        {% if club_vector_enabled|bool %}
+        {% if club_vector_topic %}
         vector.dev/topic: "{{ club_vector_topic }}"
         {% endif %}
     spec:

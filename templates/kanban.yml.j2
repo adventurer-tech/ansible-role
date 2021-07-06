@@ -38,7 +38,7 @@ spec:
         app: kanban
         name: kanban
         vector.dev/enable: "{{ kanban_vector_enabled }}"
-        {% if kanban_vector_enabled|bool %}
+        {% if kanban_vector_topic %}
         vector.dev/topic: "{{ kanban_vector_topic }}"
         {% endif %}
     spec:

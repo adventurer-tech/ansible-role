@@ -1,0 +1,78 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: accounting
+  labels:
+    app: accounting
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: accounting
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: accounting
+  labels:
+    app: accounting
+spec:
+  selector:
+    matchLabels:
+      app: accounting
+  replicas: 1
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: accounting
+        name: accounting
+        vector.dev/enable: "{{ accounting_vector_enabled }}"
+    spec:
+      restartPolicy: Always
+      containers:
+        - name: accounting
+          image: "{{ accounting_image }}"
+          imagePullPolicy: Always
+          env:
+            - name: DEPLOY_TIME
+              value: "{{ accounting_time }}"
+            - name: LOG_LEVEL
+              value: "{{ accounting_log_level }}"
+            - name: KAFKA_TOPIC
+              value: "{{ accounting_kafka_topic }}"
+            - name: KAFKA_CLIENT_ID
+              value: "{{ accounting_kafka_client_id }}"
+            - name: KAFKA_GROUP_ID
+              value: "{{ accounting_kafka_group_id }}"
+            - name: KAFKA_BROKER_LIST
+              value: "{{ accounting_kafka_broker_list }}"
+            - name: KAFKA_HBINTERVAL_MS
+              value: "{{ accounting_kafka_hbinterval_ms }}"
+            - name: ADVENTURER_TOKEN
+              value: "{{ accounting_adventurer_token }}"
+            - name: FINANCE_BASE
+              value: "{{ finance_base }}"
+            - name: KANBAN_BASE
+              value: "{{ kanban_base }}"
+            - name: CLUB_BASE
+              value: "{{ club_base }}"
+          ports:
+            - name: http
+              containerPort: 80
+          resources:
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+            requests:
+              cpu: "10m"
+              memory: "32Mi"
