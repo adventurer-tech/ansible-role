@@ -38,7 +38,7 @@ spec:
         app: finance
         name: finance
         vector.dev/enable: "{{ finance_vector_enabled }}"
-        {% if finance_vector_enabled|bool %}
+        {% if finance_vector_topic %}
         vector.dev/topic: "{{ finance_vector_topic }}"
         {% endif %}
     spec:
