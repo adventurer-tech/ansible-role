@@ -1,3 +1,4 @@
+#jinja2: lstrip_blocks: "True", trim_blocks: "True"
 ---
 apiVersion: v1
 kind: Service
@@ -37,7 +38,7 @@ spec:
         app: kanban
         name: kanban
         vector.dev/enable: "{{ kanban_vector_enabled }}"
-        {% if kanban_vector_topic %}
+        {% if kanban_vector_enabled|bool %}
         vector.dev/topic: "{{ kanban_vector_topic }}"
         {% endif %}
     spec:

@@ -1,3 +1,4 @@
+#jinja2: lstrip_blocks: "True", trim_blocks: "True"
 ---
 apiVersion: v1
 kind: Service
@@ -37,7 +38,7 @@ spec:
         app: finance
         name: finance
         vector.dev/enable: "{{ finance_vector_enabled }}"
-        {% if finance_vector_topic %}
+        {% if finance_vector_enabled|bool %}
         vector.dev/topic: "{{ finance_vector_topic }}"
         {% endif %}
     spec:

@@ -37,21 +37,21 @@ finance_version: latest
 finance_image: "registry.cn-beijing.aliyuncs.com/adventurer/finance:{{ finance_version }}"
 finance_port: "80"
 finance_postgresql_host: postgresql.data
-finance_vector_enabled: "true"
+finance_vector_enabled: true
 finance_vector_topic:
 
 kanban_version: latest
 kanban_image: "registry.cn-beijing.aliyuncs.com/adventurer/kanban:{{ kanban_version }}"
 kanban_port: "80"
 kanban_mongo_connection: "{{ mongodb_connection }}/kanban?authSource=admin"
-kanban_vector_enabled: "true"
+kanban_vector_enabled: true
 kanban_vector_topic:
 
 club_version: latest
 club_image: "registry.cn-beijing.aliyuncs.com/adventurer/club:{{ club_version }}"
 club_port: "80"
 club_mongo_connection: "{{ mongodb_connection }}/club?authSource=admin"
-club_vector_enabled: "true"
+club_vector_enabled: true
 club_vector_topic:
 
 github_version: latest
