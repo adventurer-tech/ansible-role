@@ -35,6 +35,11 @@ spec:
     metadata:
       labels:
         app: github
+        name: github
+        vector.dev/enable: "{{ github_vector_enabled }}"
+        {% if github_vector_topic %}
+        vector.dev/topic: "{{ github_vector_topic }}"
+        {% endif %}
     spec:
       restartPolicy: Always
       containers:
