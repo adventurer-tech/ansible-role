@@ -35,6 +35,11 @@ spec:
     metadata:
       labels:
         app: kanban
+        name: kanban
+        vector.dev/enable: "{{ kanban_vector_enabled }}"
+        {% if kanban_topic %}
+        vector.dev/topic: "{{ kanban_vector_topic }}"
+        {% endif %}
     spec:
       restartPolicy: Always
       containers:

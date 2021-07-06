@@ -35,6 +35,11 @@ spec:
     metadata:
       labels:
         app: club
+        name: club
+        vector.dev/enable: "{{ club_vector_enabled }}"
+        {% if club_topic %}
+        vector.dev/topic: "{{ club_vector_topic }}"
+        {% endif %}
     spec:
       restartPolicy: Always
       containers:
