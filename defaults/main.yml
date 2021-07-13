@@ -44,6 +44,7 @@ finance_version: latest
 finance_image: "registry.cn-beijing.aliyuncs.com/adventurer/finance:{{ finance_version }}"
 finance_port: "80"
 finance_postgresql_host: postgresql.data
+finance_postgresql_dbname: finance
 finance_vector_enabled: "true"
 finance_vector_topic: "{{ kafka_topic }}"
 

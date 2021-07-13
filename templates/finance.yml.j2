@@ -57,7 +57,7 @@ spec:
             - name: POSTGRES_HOST
               value: "{{ finance_postgresql_host }}"
             - name: POSTGRES_DBNAME
-              value: finance
+              value: "{{ finance_postgresql_dbname }}"
           ports:
             - name: http
               containerPort: 80
