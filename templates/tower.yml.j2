@@ -47,9 +47,11 @@ spec:
             - name: LOGIN_URL
               value: "{{ tower_login_url }}"
             - name: AUTH_ENDPOINT
-              value: "{{ tower_auth_endpoint }}"
+              value: "{{ auth_endpoint }}"
             - name: KANBAN_ENDPOINT
-              value: "{{ tower_kanban_endpoint }}"
+              value: "{{ kanban_endpoint }}"
+            - name: FINANCE_ENDPOINT
+              value: "{{ finance_base }}"
             - name: NODE_ENV
               value: "{{ tower_node_env }}"
             - name: NAMESPACE

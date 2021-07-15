@@ -2,11 +2,13 @@
 namespace: adv-tech
 state: present
 
+adventurer_state: "{{ state }}"
+adventurer_namespace: "{{ namespace }}"
 stargate_namespace: adventurer
 
 mongodb_connection: mongodb://root:it_is_a_secret@mongodb
 
-kafka_topic: adventurer-uat
+adv_kafka_topic: adventurer-uat
 
 domain: adv-tech.36node.com
 ingress_name: "{{ namespace }}"
@@ -23,15 +25,14 @@ tower_time: 20210624110000
 github_time: 20210624110000
 accounting_time: 20210624110000
 
-finance_base: https://finance.adv-uat.36node.com/v0
-kanban_base: https://kanban.adv-uat.36node.com/v0
-club_base: https://club.adv-uat.36node.com/v0
+finance_endpoint: https://finance.adv-uat.36node.com/v0
+kanban_endpoint: https://kanban.adv-uat.36node.com/v0
+club_endpoint: https://club.adv-uat.36node.com/v0
+auth_endpoint: https://api.stargate.36node.com/auth/uat
 
 tower_version: latest
 tower_image: "registry.cn-beijing.aliyuncs.com/adventurer/tower:{{ tower_version }}"
-tower_login_url: https://adventurer.account-uat.stargate.36node.com/login?appId=600b8fce6a6c690011096e51
-tower_auth_endpoint: "https://api.stargate.36node.com/auth/uat"
-tower_kanban_endpoint: "https://kanban.{{ domain }}/v0"
+tower_login_url: https://hall.adv-uat.36node.com/login?appId=600b8fce6a6c690011096e51
 tower_node_env: development
 
 hall_version: latest
@@ -46,21 +47,21 @@ finance_port: "80"
 finance_postgresql_host: postgresql.data
 finance_postgresql_dbname: finance
 finance_vector_enabled: "true"
-finance_vector_topic: "{{ kafka_topic }}"
+finance_vector_topic: "{{ adv_kafka_topic }}"
 
 kanban_version: latest
 kanban_image: "registry.cn-beijing.aliyuncs.com/adventurer/kanban:{{ kanban_version }}"
 kanban_port: "80"
 kanban_mongo_connection: "{{ mongodb_connection }}/kanban?authSource=admin"
 kanban_vector_enabled: "true"
-kanban_vector_topic: "{{ kafka_topic }}"
+kanban_vector_topic: "{{ adv_kafka_topic }}"
 
 club_version: latest
 club_image: "registry.cn-beijing.aliyuncs.com/adventurer/club:{{ club_version }}"
 club_port: "80"
 club_mongo_connection: "{{ mongodb_connection }}/club?authSource=admin"
 club_vector_enabled: "true"
-club_vector_topic: "{{ kafka_topic }}"
+club_vector_topic: "{{ adv_kafka_topic }}"
 
 github_version: latest
 github_image: "registry.cn-beijing.aliyuncs.com/adventurer/github:{{ github_version }}"
@@ -70,12 +71,12 @@ github_driver_token: "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"
 github_driver_name: 36node
 github_hook_url: "https://api.adventurer.tech/core/v0/hook-events"
 github_vector_enabled: "true"
-github_vector_topic: "{{ kafka_topic }}"
+github_vector_topic: "{{ adv_kafka_topic }}"
 
 accounting_version: latest
 accounting_image: "registry.cn-beijing.aliyuncs.com/adventurer/accounting:{{ accounting_version }}"
 accounting_log_level: info
-accounting_kafka_topic: "{{ kafka_topic }}"
+accounting_kafka_topic: "{{ adv_kafka_topic }}"
 accounting_kafka_client_id: adventurer-accounting
 accounting_kafka_group_id: adventurer-accounting
 accounting_kafka_broker_list: kafka-1:9092
