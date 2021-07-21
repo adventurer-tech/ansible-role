@@ -1,4 +1,5 @@
 # Default values for pgAdmin4.
+# https://github.com/rowanruseler/helm-charts/tree/master/charts/pgadmin4
 
 replicaCount: 1
 
