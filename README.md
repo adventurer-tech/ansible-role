@@ -4,7 +4,7 @@ adventurer-tech 的 ansible role，用于部署
 
 ### 其他
 
-- kanban 的 url 只接受/v0，而 traefik 无法像 nginx 定义正则匹配，因此把 api 的 ingress 放到 pod 的配置文件中
+- ~~kanban 的 url 只接受/v0，而 traefik 无法像 nginx 定义正则匹配，因此把 api 的 ingress 放到 pod 的配置文件中~~
 - 使用`helm install pgadmin runix/pgadmin4 --namespace adv-uat -f ./files/pgadmin.yml`安装 pgadmin4，访问地址为`pgadmin.adv-uat.36node.com`，登录账号`chart@example.local`，登录 pwd`SuperSecret`，参考地址`https://github.com/rowanruseler/helm-charts/tree/master/charts/pgadmin4`
 
 ## Requirements
