@@ -46,7 +46,7 @@ spec:
       containers:
         - name: club
           image: "{{ club_image }}"
-          imagePullPolicy: Always
+          imagePullPolicy: "{{ image_pull_policy }}"
           env:
             - name: DEPLOY_TIME
               value: "{{ club_time }}"
@@ -54,6 +54,16 @@ spec:
               value: "{{ club_port }}"
             - name: MONGODB_CONNECTION
               value: "{{ club_mongo_connection }}"
+            - name: AUTH_BASE
+              value: "{{ auth_endpoint }}"
+            - name: KANBAN_BASE
+              value: "{{ kanban_endpoint }}"
+            - name: FINANCE_BASE
+              value: "{{ finance_endpoint }}"
+            - name: FINANCE_MANAGER_TOKEN
+              value: "{{ admin_token }}"
+            - name: AUTH_ADMIN_TOKEN
+              value: "{{ admin_token }}"
           ports:
             - name: http
               containerPort: 80

@@ -1,65 +1,84 @@
 ---
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: "{{ ingress_name }}"
+  name: adventurer
   annotations:
     kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: "{{ cert_issuer }}"
-    # traefik.ingress.kubernetes.io/redirect-entry-point: https
 spec:
   rules:
     - host: tower.{{ domain }}
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: /
             backend:
-              serviceName: tower
-              servicePort: 80
+              service:
+                name: tower
+                port:
+                  number: 80
     - host: hall.{{ domain }}
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: /
             backend:
-              serviceName: hall
-              servicePort: 80
+              service:
+                name: hall
+                port:
+                  number: 80
     - host: bank.{{ domain }}
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: /
             backend:
-              serviceName: bank
-              servicePort: 80
+              service:
+                name: bank
+                port:
+                  number: 80
     - host: kanban.{{ domain }}
       http:
         paths:
-          - path: /v0
+          - pathType: Prefix
+            path: /v0
             backend:
-              serviceName: kanban
-              servicePort: 80
+              service:
+                name: kanban
+                port:
+                  number: 80
     - host: finance.{{ domain }}
       http:
         paths:
-          - path: /v0
+          - pathType: Prefix
+            path: /v0
             backend:
-              serviceName: finance
-              servicePort: 80
+              service:
+                name: finance
+                port:
+                  number: 80
     - host: club.{{ domain }}
       http:
         paths:
-          - path: /v0
+          - pathType: Prefix
+            path: /v0
             backend:
-              serviceName: club
-              servicePort: 80
+              service:
+                name: club
+                port:
+                  number: 80
     - host: github.{{ domain }}
       http:
         paths:
-          - path: /v0
+          - pathType: Prefix
+            path: /v0
             backend:
-              serviceName: github
-              servicePort: 80
+              service:
+                name: github
+                port:
+                  number: 80
   tls:
-    - hosts:
-        - "{{ domain }}"
+    - secretName: "{{ domain }}"
+      hosts:
         - "*.{{ domain }}"
-      secretName: "{{ domain }}"

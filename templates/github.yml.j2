@@ -46,7 +46,7 @@ spec:
       containers:
         - name: github
           image: "{{ github_image }}"
-          imagePullPolicy: Always
+          imagePullPolicy: "{{ image_pull_policy }}"
           env:
             - name: DEPLOY_TIME
               value: "{{ github_time }}"

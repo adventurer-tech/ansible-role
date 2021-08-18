@@ -41,6 +41,7 @@ spec:
       containers:
         - name: tower
           image: "{{ tower_image }}"
+          imagePullPolicy: "{{ image_pull_policy }}"
           env:
             - name: DEPLOY_TIME
               value: "{{ tower_time }}"
@@ -52,10 +53,14 @@ spec:
               value: "{{ kanban_endpoint }}"
             - name: FINANCE_ENDPOINT
               value: "{{ finance_endpoint}}"
+            - name: CLUB_ENDPOINT
+              value: "{{ club_endpoint}}"
             - name: NODE_ENV
               value: "{{ tower_node_env }}"
             - name: NAMESPACE
               value: "{{ stargate_namespace }}"
+            - name: GITHUB_HOOK_PAYLOAD_URL
+              value: "{{ github_hook_payload_url }}"
           ports:
             - name: http
               containerPort: 80

@@ -2,6 +2,10 @@
 
 adventurer-tech 的 ansible role，用于部署
 
+### 重要
+
+- finance 第一次启动，如果连接不上数据库需要 force delete pod 重启一下服务
+
 ### 其他
 
 - ~~kanban 的 url 只接受/v0，而 traefik 无法像 nginx 定义正则匹配，因此把 api 的 ingress 放到 pod 的配置文件中~~
@@ -26,6 +30,15 @@ Including an example of how to use your role (for instance, with variables passe
     - hosts: servers
       roles:
          - { role: username.rolename, x: 42 }
+
+## Develop guide
+
+Link to local installed role for convenience.
+
+```
+rm -rf /Users/zzs/.ansible/roles/36node.project.adventurer
+ln -s $PWD /Users/zzs/.ansible/roles/36node.project.adventurer
+```
 
 ## License
 

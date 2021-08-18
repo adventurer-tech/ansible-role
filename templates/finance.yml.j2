@@ -46,7 +46,7 @@ spec:
       containers:
         - name: finance
           image: "{{ finance_image }}"
-          imagePullPolicy: Always
+          imagePullPolicy: "{{ image_pull_policy }}"
           env:
             - name: DEPLOY_TIME
               value: "{{ finance_time }}"
@@ -58,6 +58,10 @@ spec:
               value: "{{ finance_postgresql_host }}"
             - name: POSTGRES_DBNAME
               value: "{{ finance_postgresql_dbname }}"
+            - name: POSTGRES_USERNAME
+              value: "{{ finance_postgresql_username }}"
+            - name: POSTGRES_PASSWORD
+              value: "{{ finance_postgresql_password }}"
           ports:
             - name: http
               containerPort: 80

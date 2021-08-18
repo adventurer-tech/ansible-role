@@ -41,9 +41,30 @@ spec:
       containers:
         - name: hall
           image: "{{ hall_image }}"
+          imagePullPolicy: "{{ image_pull_policy }}"
           env:
             - name: DEPLOY_TIME
               value: "{{ hall_time }}"
+            - name: REACT_APP_AUTH_BASE
+              value: "{{ auth_endpoint }}"
+            - name: REACT_APP_KANBAN_BASE
+              value: "{{ kanban_endpoint }}"
+            - name: REACT_APP_CLUB_BASE
+              value: "{{ club_endpoint }}"
+            - name: REACT_APP_FINANCE_BASE
+              value: "{{ finance_endpoint }}"
+            - name: REACT_APP_PROVIDER
+              value: "{{ hall_github_provider }}"
+            - name: REACT_APP_PWD_PROVIDER
+              value: "{{ hall_pwd_provider }}"
+            - name: REACT_APP_TASK_BONUS
+              value: "{{ task_bonus }}"
+            - name: REACT_APP_OVERDUE_DISCOUNT
+              value: "{{ overdue_discount }}"
+            - name: REACT_APP_OVERDUE_EXP_DISCOUNT
+              value: "{{ overdue_exp_discount }}"
+            - name: REACT_APP_LOGIN_URL
+              value: "{{ hall_login_url }}"
           ports:
             - name: http
               containerPort: 80

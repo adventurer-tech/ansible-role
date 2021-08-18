@@ -1,0 +1,28 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: finance-sync-db
+spec:
+  template:
+    spec:
+      containers:
+        - name: finance-sync-db
+          image: "{{ finance_image }}"
+          env:
+            - name: DEPLOY_TIME
+              value: "{{ finance_time }}"
+            - name: POSTGRES_HOST
+              value: "{{ finance_postgresql_host }}"
+            - name: POSTGRES_DBNAME
+              value: "{{ finance_postgresql_dbname }}"
+            - name: POSTGRES_USERNAME
+              value: "{{ finance_postgresql_username }}"
+            - name: POSTGRES_PASSWORD
+              value: "{{ finance_postgresql_password }}"
+            - name: LOG_LEVEL
+              value: info
+          command: ["yarn"]
+          args: ["db:sync"]
+      restartPolicy: Never
+  backoffLimit: 4

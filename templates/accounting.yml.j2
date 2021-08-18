@@ -42,7 +42,7 @@ spec:
       containers:
         - name: accounting
           image: "{{ accounting_image }}"
-          imagePullPolicy: Always
+          imagePullPolicy: "{{ image_pull_policy }}"
           env:
             - name: DEPLOY_TIME
               value: "{{ accounting_time }}"
@@ -59,13 +59,21 @@ spec:
             - name: KAFKA_HBINTERVAL_MS
               value: "{{ accounting_kafka_hbinterval_ms }}"
             - name: ADVENTURER_TOKEN
-              value: "{{ accounting_adventurer_token }}"
+              value: "{{ admin_token }}"
             - name: FINANCE_BASE
               value: "{{ finance_endpoint }}"
             - name: KANBAN_BASE
               value: "{{ kanban_endpoint }}"
             - name: CLUB_BASE
               value: "{{ club_endpoint }}"
+            - name: TASK_BONUS
+              value: "{{ task_bonus }}"
+            - name: EXP_BONUS
+              value: "{{ exp_bonus }}"
+            - name: OVERDUE_DISCOUNT
+              value: "{{ overdue_discount }}"
+            - name: OVERDUE_EXP_DISCOUNT
+              value: "{{ overdue_exp_discount }}"
           resources:
             limits:
               cpu: "500m"

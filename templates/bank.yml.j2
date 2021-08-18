@@ -41,9 +41,20 @@ spec:
       containers:
         - name: bank
           image: "{{ bank_image }}"
+          imagePullPolicy: "{{ image_pull_policy }}"
           env:
             - name: DEPLOY_TIME
               value: "{{ bank_time }}"
+            - name: REACT_APP_LOGIN_URL
+              value: "{{ bank_login_url }}"
+            - name: REACT_APP_AUTH_BASE
+              value: "{{ auth_endpoint }}"
+            - name: REACT_APP_KANBAN_BASE
+              value: "{{ kanban_endpoint }}"
+            - name: REACT_APP_CLUB_BASE
+              value: "{{ club_endpoint }}"
+            - name: REACT_APP_FINANCE_BASE
+              value: "{{ finance_endpoint }}"
           ports:
             - name: http
               containerPort: 80

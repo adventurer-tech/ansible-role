@@ -1,12 +1,12 @@
 ---
-- name: Namespace for adv-tech
+- name: Namespace for adventurer
   community.kubernetes.k8s:
     state: "{{ adventurer_state }}"
     name: "{{ adventurer_namespace }}"
     api_version: v1
     kind: Namespace
 
-- name: adv-tech service
+- name: adventurer service
   community.kubernetes.k8s:
     state: "{{ adventurer_state }}"
     namespace: "{{ adventurer_namespace }}"
@@ -14,6 +14,7 @@
   with_items:
     - hall.yml.j2
     - bank.yml.j2
+    - finance-jobs.yml.j2
     - finance.yml.j2
     - kanban.yml.j2
     - club.yml.j2
@@ -22,4 +23,4 @@
     - accounting.yml.j2
     - ingress.yml.j2
   tags:
-    - adv-tech
+    - adventurer
