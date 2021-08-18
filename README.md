@@ -1,6 +1,6 @@
-# ansible-role
+# adventurer-role
 
-adventurer-tech 的 ansible role，用于部署
+adventurer-tech 1.0 的 ansible role，用于部署
 
 ### 重要
 
