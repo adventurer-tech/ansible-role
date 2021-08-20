@@ -17,6 +17,7 @@ github_path: /v0
 
 kafka_topic: adventurer-uat
 task_bonus: 1
+promotions: ""
 exp_bonus: 1
 overdue_discount: 0.8
 overdue_exp_discount: 0
