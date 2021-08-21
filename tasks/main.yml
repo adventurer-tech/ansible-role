@@ -12,15 +12,16 @@
     namespace: "{{ adventurer_namespace }}"
     template: "{{ item }}"
   with_items:
-    - hall.yml.j2
+    - accounting.yml.j2
     - bank.yml.j2
+    - club.yml.j2
     - finance-jobs.yml.j2
     - finance.yml.j2
-    - kanban.yml.j2
-    - club.yml.j2
-    - tower.yml.j2
     - github.yml.j2
-    - accounting.yml.j2
+    - guide.yml.j2
+    - hall.yml.j2
     - ingress.yml.j2
+    - kanban.yml.j2
+    - tower.yml.j2
   tags:
     - adventurer
