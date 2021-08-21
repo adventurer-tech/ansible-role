@@ -10,8 +10,6 @@ spec:
         - name: finance-sync-db
           image: "{{ finance_image }}"
           env:
-            - name: DEPLOY_TIME
-              value: "{{ finance_time }}"
             - name: POSTGRES_HOST
               value: "{{ finance_postgresql_host }}"
             - name: POSTGRES_DBNAME
