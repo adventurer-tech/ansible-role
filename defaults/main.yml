@@ -23,14 +23,15 @@ overdue_discount: 0.8
 overdue_exp_discount: 0
 admin_token: "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJhdXRoIiwic3ViIjoic2Vzc2lvbiIsImp0aSI6IjYwZGE2ZjVjZWExMDEwMDAxMTIyOGIwNSIsIm5zIjoiYWR2ZW50dXJlciIsInByb3ZpZGVyIjoiNjAwYmIwYTU2YTZjNjkwMDExMDk2ZmU1Iiwicm9sZXMiOlsiRklOQU5DRV9NQU5BR0VSIiwiVVNFUk1BTkFHRVIiLCJBRE1JTiJdLCJ1c2VyIjoiNjBkOTZhYTRlYTEwMTAwMDExMjI4NmRhIiwiYWN0aXZlIjp0cnVlLCJpYXQiOjE2MjQ5Mjg2MDEsImV4cCI6MjgyNTAxNTAwMX0.l3i07hRGF7vBPNU85ShblhTOVrsjhl-K5EldbAVnAPNk4euEVhpOmLX0vCuoPLfUapMGoYu8YZ8vVIlHUaVK1WrRsot-kJIiqjt5-Fv9_GeGwDbSwYVzn3NVq_IdaIHQc9S0WZIyGuNBjrVZsC5__MaS_3IeseGD9s07wHK5MA8"
 
-finance_time: 20210624110000
+accounting_time: 20210624110000
 bank_time: 20210624110000
+club_time: 20210624110000
+finance_time: 20210624110000
+github_time: 20210624110000
+guide_time: 20210624110000
 hall_time: 20210624110000
 kanban_time: 20210624110000
-club_time: 20210624110000
 tower_time: 20210624110000
-github_time: 20210624110000
-accounting_time: 20210624110000
 
 finance_endpoint: https://finance.{{ domain }}/v0
 kanban_endpoint: https://kanban.{{ domain }}/v0
