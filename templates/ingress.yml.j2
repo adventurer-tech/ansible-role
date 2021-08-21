@@ -38,6 +38,16 @@ spec:
                 name: bank
                 port:
                   number: 80
+    - host: guide.{{ domain }}
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: guide
+                port:
+                  number: 80
     - host: kanban.{{ domain }}
       http:
         paths:

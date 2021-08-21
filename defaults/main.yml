@@ -54,6 +54,9 @@ bank_version: latest
 bank_image: registry.cn-beijing.aliyuncs.com/adventurer/bank:{{ bank_version }}
 bank_login_url: "https://hall.{{ domain }}/login?appId=60d967acea10100011228694"
 
+guide_version: 0.1
+guide_image: registry.cn-beijing.aliyuncs.com/adventurer/guide:{{ guide_version }}
+
 finance_version: latest
 finance_image: registry.cn-beijing.aliyuncs.com/adventurer/finance:{{ finance_version }}
 finance_port: "80"
