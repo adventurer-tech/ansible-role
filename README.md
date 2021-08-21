@@ -6,22 +6,24 @@ adventurer-tech 1.0 的 ansible role，用于部署
 
 - finance 第一次启动，如果连接不上数据库需要 force delete pod 重启一下服务
 
-### 其他
+postgresql 检查是否有 transaction 卡主，并且删除之，[参考](https://medium.com/little-programming-joys/finding-and-killing-long-running-queries-on-postgres-7c4f0449e86d)
 
-- ~~kanban 的 url 只接受/v0，而 traefik 无法像 nginx 定义正则匹配，因此把 api 的 ingress 放到 pod 的配置文件中~~
-- 使用`helm install pgadmin runix/pgadmin4 --namespace adv-uat -f ./files/pgadmin.yml`安装 pgadmin4，访问地址为`pgadmin.adv-uat.36node.com`，登录账号`chart@example.local`，登录 pwd`SuperSecret`，参考地址`https://github.com/rowanruseler/helm-charts/tree/master/charts/pgadmin4`
 
-## Requirements
+```
+SELECT
+  pid,
+  now() - pg_stat_activity.query_start AS duration,
+  query,
+  state
+FROM pg_stat_activity
+WHERE (now() - pg_stat_activity.query_start) > interval '5 minutes';
+```
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+删除卡主的
 
-## Role Variables
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-## Dependencies
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+```
+SELECT pg_terminate_backend(__pid__);
+```
 
 ## Example Playbook
 
