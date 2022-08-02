@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: bank
+  name: www
   labels:
-    app: bank
+    app: www
 spec:
   type: ClusterIP
   ports:
@@ -12,15 +12,15 @@ spec:
       port: 80
       targetPort: 80
   selector:
-    app: bank
+    app: www
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bank
+  name: www
   labels:
-    app: bank
+    app: www
 spec:
   replicas: 1
   minReadySeconds: 10
@@ -31,30 +31,20 @@ spec:
       maxUnavailable: 0
   selector:
     matchLabels:
-      app: bank
+      app: www
   template:
     metadata:
       labels:
-        app: bank
+        app: www
     spec:
       restartPolicy: Always
       containers:
-        - name: bank
-          image: "{{ bank_image }}"
+        - name: www
+          image: "{{ www_image }}"
           imagePullPolicy: "{{ image_pull_policy }}"
           env:
             - name: DEPLOY_TIME
-              value: "{{ bank_time }}"
-            - name: REACT_APP_LOGIN_URL
-              value: "{{ bank_login_url }}"
-            - name: REACT_APP_AUTH_BASE
-              value: "{{ auth_endpoint }}"
-            - name: REACT_APP_KANBAN_BASE
-              value: "{{ kanban_endpoint }}"
-            - name: REACT_APP_CLUB_BASE
-              value: "{{ club_endpoint }}"
-            - name: REACT_APP_FINANCE_BASE
-              value: "{{ finance_endpoint }}"
+              value: "{{ www_time }}"
           ports:
             - name: http
               containerPort: 80

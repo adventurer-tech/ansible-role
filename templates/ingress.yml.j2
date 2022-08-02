@@ -6,8 +6,29 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: "{{ cert_issuer }}"
+    ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   rules:
+    - host: "{{ domain }}"
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: www
+                port:
+                  number: 80
+    - host: www.{{ domain }}
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: www
+                port:
+                  number: 80
     - host: tower.{{ domain }}
       http:
         paths:
@@ -91,4 +112,5 @@ spec:
   tls:
     - secretName: "{{ domain }}"
       hosts:
+        - "{{ domain }}"
         - "*.{{ domain }}"

@@ -23,5 +23,6 @@
     - ingress.yml.j2
     - kanban.yml.j2
     - tower.yml.j2
+    - www.yml.j2
   tags:
     - adventurer

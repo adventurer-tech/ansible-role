@@ -32,12 +32,16 @@ guide_time: 20210624110000
 hall_time: 20210624110000
 kanban_time: 20210624110000
 tower_time: 20210624110000
+www_time: 20220802
 
 finance_endpoint: https://finance.{{ domain }}/v0
 kanban_endpoint: https://kanban.{{ domain }}/v0
 club_endpoint: https://club.{{ domain }}/v0
 github_endpoint: https://github.{{ domain }}/v0
 auth_endpoint: https://api.stargate.36node.com/auth/uat
+
+www_version: master
+www_image: registry.cn-beijing.aliyuncs.com/adventurer/www:{{ www_version }}
 
 tower_version: latest
 tower_image: "registry.cn-beijing.aliyuncs.com/adventurer/tower:{{ tower_version }}"
